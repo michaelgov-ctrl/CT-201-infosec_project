@@ -15,6 +15,7 @@ func main() {
 	pos := posApplication{
 		cardReader: libmsr.NewDevice(device),
 	}
+	defer pos.cardReader.Close()
 
 	newPosGui(pos)
 }
