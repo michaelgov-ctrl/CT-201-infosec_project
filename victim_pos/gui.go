@@ -18,19 +18,18 @@ type customTheme struct{}
 var _ fyne.Theme = (*customTheme)(nil)
 
 func (ct customTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
-	if name == theme.ColorNameBackground {
+	switch name {
+	case theme.ColorNameBackground:
 		return color.RGBA{R: 204, G: 0, B: 0, A: 160}
-	}
-
-	if name == theme.ColorNameInputBackground {
+	case theme.ColorNameInputBackground:
 		return color.White
-	}
-
-	if name == theme.ColorNameForeground || name == theme.ColorNameInputBorder {
+	case theme.ColorNameForeground:
 		return color.Black
+	case theme.ColorNameInputBorder:
+		return color.Black
+	default:
+		return theme.DefaultTheme().Color(name, variant)
 	}
-
-	return theme.DefaultTheme().Color(name, variant)
 }
 
 func (ct customTheme) Icon(name fyne.ThemeIconName) fyne.Resource {
