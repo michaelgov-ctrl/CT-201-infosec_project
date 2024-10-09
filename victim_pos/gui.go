@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"image/color"
+	"log"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -73,10 +74,11 @@ func newPosGui(pos posApplication) {
 			name, err := pos.parseCardHolderName(ccInfo)
 			if err != nil {
 				textBox.Text = fmt.Sprintf("card read error: %s", err)
+				log.Printf("card read error: %s", err)
 				textBox.Refresh()
 			}
 
-			textBox.Text = fmt.Sprintf("Card scanned for:\n%s", name)
+			textBox.Text = fmt.Sprintf("Purchase processed for:\n%s", name)
 			textBox.Refresh()
 			fmt.Println(ccInfo)
 		}
