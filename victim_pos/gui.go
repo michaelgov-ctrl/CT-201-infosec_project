@@ -56,6 +56,10 @@ func newPosGui(pos posApplication) {
 	app := app.New()
 	app.Settings().SetTheme(&customTheme{})
 	window := app.NewWindow("Victim Point-of-Sale System")
+	window.SetCloseIntercept(func() {
+		pos.cardReader.Close()
+		window.Close()
+	})
 
 	textBox := widget.NewEntry()
 	window.SetContent(textBox)
