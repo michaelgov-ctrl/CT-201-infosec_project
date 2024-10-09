@@ -27,4 +27,4 @@ This POS system:
 
 ## Demonstration
 
-[![A demonstration of the project can be found here:](https://img.youtube.com/vi/-gjtjLrjgek/maxresdefault.jpg)](https://youtu.be/-gjtjLrjgek)
+[![A demonstration of the project can be found here](https://img.youtube.com/vi/-gjtjLrjgek/0.jpg)](https://youtu.be/-gjtjLrjgek)
