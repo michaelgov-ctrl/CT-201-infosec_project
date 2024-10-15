@@ -10,7 +10,7 @@ use winapi::um::handleapi::CloseHandle;
 use winapi::um::memoryapi::{ReadProcessMemory, VirtualQueryEx};
 use winapi::um::processthreadsapi::OpenProcess;
 use winapi::um::psapi::{EnumProcesses, EnumProcessModules, GetModuleFileNameExW};
-use winapi::um::winnt::{MEMORY_BASIC_INFORMATION, PROCESS_QUERY_INFORMATION, PROCESS_VM_READ};
+use winapi::um::winnt::{MEMORY_BASIC_INFORMATION, MEM_COMMIT, PROCESS_QUERY_INFORMATION, PROCESS_VM_READ};
 
 #[derive(Debug)]
 pub struct Process {
@@ -84,7 +84,7 @@ impl Process {
         while unsafe {
             VirtualQueryEx(self.handle, address as *const _, &mut mbi, std::mem::size_of::<MEMORY_BASIC_INFORMATION>())
         } != 0 {
-            if mbi.State == winapi::um::winnt::MEM_COMMIT {
+            if mbi.State == MEM_COMMIT {
                 let mut buffer: Vec<u8> = vec![0; mbi.RegionSize as usize];
                 let mut bytes_read: SIZE_T = 0;
 
