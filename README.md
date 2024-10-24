@@ -2,10 +2,10 @@
 
 The final project of CT 201 is to select a hack where the target was specifically information/data.
 I selected the [2013 Target Data Breach](https://www.commerce.senate.gov/services/files/24d3c229-4f2f-405d-b8db-a3a67f183883)
-Hackers collected the financial and personal information for as many as 110 million Target customers.
+Where hackers collected the financial and personal information for as many as 110 million Target customers.
 
 It was reported part of the hack was facilitated by the [BlackPOS malware](https://en.wikipedia.org/wiki/BlackPOS) to steal customer information as they scanned their cards on Targets point of sale systems.
-This malware enumerates process runnign on a windows host and hooks into any process named `pos.exe` then scans its memory for credit card information.
+This malware enumerates processes running on a windows host and hooks into any process named `pos.exe`, then scans its memory for credit card information.
 
 This project seeks to re-engineer the BlackPOS malware and demonstrate how it works.
 
