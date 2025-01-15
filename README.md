@@ -1,4 +1,5 @@
 # Drexel CT 201 InfoSec Project
+DISCLAIMER: this is for educational purposes only
 
 The final project of CT 201 is to select a hack where the target was specifically information/data.
 I selected the [2013 Target Data Breach](https://www.commerce.senate.gov/services/files/24d3c229-4f2f-405d-b8db-a3a67f183883)
